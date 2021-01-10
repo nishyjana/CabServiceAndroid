@@ -1,20 +1,37 @@
 package com.example.registration;
 
-import android.widget.EditText;
-import android.widget.TextView;
-
 public class cabBook {
-    private String name,number, pickup;
+    private String name,number, pickup,driver,userID;
 
-    public cabBook(TextView name, EditText number, EditText pickup) {
-    }
 
-    public cabBook(String name, String number, String pickup) {
+
+    public cabBook(String name, String number, String pickup, String driver,String userID) {
         this.name = name;
         this.number = number;
         this.pickup = pickup;
+        this.driver = driver;
+        this.userID=userID;
+
     }
 
+    public cabBook() {
+    }
+
+    public String getDriver() {
+        return driver;
+    }
+
+    public void setDriver(String driver) {
+        this.driver = driver;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 
     public String getName() {
         return name;

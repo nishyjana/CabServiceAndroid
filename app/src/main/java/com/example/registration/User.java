@@ -9,7 +9,7 @@ public class User {
     private String type="Customer";
 
 
-    public User() {
+    public User(String email, String number, String location, String pending) {
     }
 
 
