@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "812943155348",
+    "project_id": "cab-service-app",
+    "storage_bucket": "cab-service-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812943155348:android:c7ce0de07079dc4c275481",
+        "android_client_info": {
+          "package_name": "com.example.registration"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812943155348-svnvdi2lpl8eu079ofv82avhl3fs6qfk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqsj-wXS3nCbCh0MVV6pkkDZ13IwayxDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812943155348-svnvdi2lpl8eu079ofv82avhl3fs6qfk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
