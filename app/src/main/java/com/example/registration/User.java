@@ -6,26 +6,25 @@ public class User {
     private String contact;
     private String password;
     private String address;
-    private String type="Customer";
+    private Boolean isadmin;
+    private Boolean isDriver;
+    private Boolean isUser;
 
 
-    public User(String email, String number, String location, String pending) {
+    public User() {
     }
 
 
-
-    public User( String email,String name, String contact , String password, String address,String type) {
-
-        this.email = email;
+    public User(String name, String email, String contact, String password, String address, Boolean isadmin, Boolean isDriver, Boolean isUser) {
         this.name = name;
+        this.email = email;
         this.contact = contact;
-        this.password= password;
-        this.address= address;
-        this.type = type;
-
+        this.password = password;
+        this.address = address;
+        this.isadmin = isadmin;
+        this.isDriver = isDriver;
+        this.isUser = isUser;
     }
-
-
 
     public String getEmail() {
         return email;
@@ -66,11 +65,27 @@ public class User {
         this.address = address;
     }
 
-    public String getType() {
-        return type;
+    public Boolean getIsadmin() {
+        return isadmin;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setIsadmin(Boolean isadmin) {
+        this.isadmin = isadmin;
+    }
+
+    public Boolean getDriver() {
+        return isDriver;
+    }
+
+    public void setDriver(Boolean driver) {
+        isDriver = driver;
+    }
+
+    public Boolean getUser() {
+        return isUser;
+    }
+
+    public void setUser(Boolean user) {
+        isUser = user;
     }
 }
