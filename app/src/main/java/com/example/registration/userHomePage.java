@@ -42,7 +42,7 @@ public class userHomePage extends AppCompatActivity implements View.OnClickListe
             // Name, email address, and profile photo Url
 
             String email = user.getEmail();
-            username.setText("Welcome           "+ email);
+            username.setText(email);
 
             Toast.makeText(userHomePage.this,"HI "+email,Toast.LENGTH_LONG).show();
 
@@ -54,6 +54,7 @@ public class userHomePage extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
 
     @Override
     public void onClick(View view) {
@@ -69,7 +70,7 @@ public class userHomePage extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(userHomePage.this,"HI "+email,Toast.LENGTH_SHORT).show();
                 } else {
                     // No user is signed in
-                    Toast.makeText(userHomePage.this,"Authentication fata error. Login again",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(userHomePage.this,"Authentication fatal error. Login again",Toast.LENGTH_SHORT).show();
                 }
 
                 break;

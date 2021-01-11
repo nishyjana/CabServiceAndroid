@@ -2,6 +2,7 @@ package com.example.registration;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -10,14 +11,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView SignUp1;
@@ -26,6 +27,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button login;
     private EditText editTextEmail,editTextPassword;
     private ProgressBar progressBar2;
+    FirebaseAuth fauth;
+    FirebaseFirestore fstore;
+
+
+
+
+
+
+
 
 
     @Override
@@ -36,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAuth = FirebaseAuth.getInstance();
         progressBar2 = findViewById(R.id.ProgressBar);
         editTextEmail = findViewById(R.id.loginTextEmail);//perform binding
+        fauth =FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
+
 
         SignUp1 = findViewById(R.id.SignUp);
         SignUp1.setOnClickListener(this);
@@ -45,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
 
     @Override
     public void onClick(View view) {
@@ -60,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+
     public void login(){
         final String emailAddress = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
@@ -71,41 +87,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         progressBar2.setVisibility(View.VISIBLE);
-        try {
-            mAuth.signInWithEmailAndPassword(emailAddress,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-
+        try{
+            fauth.signInWithEmailAndPassword(emailAddress,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                   try {
-                       if(task.isSuccessful()){
-                           FirebaseUser user = mAuth.getCurrentUser();
-
-                           Toast.makeText(MainActivity.this,"Logged in successfully",Toast.LENGTH_SHORT).show();
-
-                           progressBar2.setVisibility(View.GONE);
-                           startActivity(new Intent(getApplicationContext(),userHomePage.class));
-
-
-
-                       }
-                       else{
-                           Toast.makeText(MainActivity.this," LogIn Failed",Toast.LENGTH_LONG).show();
-                           progressBar2.setVisibility(View.GONE);
-
-                       }
-                   }
-                   catch (Exception e){
-                       Toast.makeText(MainActivity.this,"SomeThing Wrong in LogIn",Toast.LENGTH_LONG).show();
-
-                   }
-
+                public void onSuccess(AuthResult authResult) {
+                    checkDriver(authResult.getUser().getUid());
                 }
             });
-
 
         }catch (Exception e){
 
         }
 
+
+    }
+
+    private void checkDriver(String uid) {
+        DocumentReference df = fstore.collection("Users").document(uid);
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("TAG","OnSucess"+documentSnapshot.getData());
+                if(documentSnapshot.getBoolean("driver") == true){
+                   // startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    Toast.makeText(MainActivity.this,"Hi driver",Toast.LENGTH_LONG).show();
+
+                }
+                else if(documentSnapshot.getBoolean("user") == true){
+                    startActivity(new Intent(getApplicationContext(),userHomePage.class));
+
+
+                }
+                else if (documentSnapshot.getBoolean("isadmin") == true){
+                    startActivity(new Intent(getApplicationContext(),adminHomePage.class));
+
+                }
+            }
+        });
     }
 }
