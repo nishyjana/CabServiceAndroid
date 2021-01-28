@@ -16,7 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class adminHomePage extends AppCompatActivity implements View.OnClickListener {
 
     private TextView ProfileName;
-    private Button logout, DriverDetaisl;
+    private Button logout, DriverDetaisl,logbook;
     FirebaseFirestore fstore;
     FirebaseAuth fauth;
 
@@ -27,9 +27,11 @@ public class adminHomePage extends AppCompatActivity implements View.OnClickList
 
         ProfileName =findViewById(R.id.text);
         logout = findViewById(R.id.Logout);
+        logbook = findViewById(R.id.LogBook);
         DriverDetaisl = findViewById(R.id.DriverDet);
         logout.setOnClickListener(this);
         DriverDetaisl.setOnClickListener(this);
+        logbook.setOnClickListener(this);
         fauth = FirebaseAuth.getInstance();
         fstore= FirebaseFirestore.getInstance();
 
@@ -66,6 +68,11 @@ public class adminHomePage extends AppCompatActivity implements View.OnClickList
                     }
 
                     break;
+                case R.id.LogBook:
+                    //Toast.makeText(adminHomePage.this, "hi logbook", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(this, ADminlogbookView.class));
+                    break;
+
 
                 case R.id.Logout:
                     FirebaseAuth.getInstance().signOut();

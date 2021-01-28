@@ -47,9 +47,12 @@ public class AdminBookingView extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         recyclerViewFireStore = findViewById(R.id.RecycleDriverDet);
 
-        Query query = firebaseFirestore.collection("Bookings");
+       // Query query = firebaseFirestore.collection("Bookings");
+        CollectionReference ref = firebaseFirestore.collection("Bookings");
+        Query querys = ref.whereEqualTo("driver","pending");
+
         FirestoreRecyclerOptions<cabBook> bookinglistoptions = new FirestoreRecyclerOptions.Builder<cabBook>()
-                .setQuery(query,cabBook.class)
+                .setQuery(querys,cabBook.class)
                 .build();
         adapter = new FirestoreRecyclerAdapter<cabBook, AdminBookingView.bookingViewholder>(bookinglistoptions) {
             @NonNull
@@ -95,13 +98,8 @@ public class AdminBookingView extends AppCompatActivity {
                                     }
                                 });
 
-
-
                     }
                 });
-
-
-                //Toast.makeText(AdminBookingList.this, "This is" +model.getName(), Toast.LENGTH_SHORT).show();
 
             }
         };
@@ -142,7 +140,7 @@ public class AdminBookingView extends AppCompatActivity {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            String subject = document.getString("name");
+                            String subject = document.getString("email");
                             subjects.add(subject);
                         }
                         adapter.notifyDataSetChanged();

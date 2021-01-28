@@ -34,6 +34,7 @@ public class userHomePage extends AppCompatActivity implements View.OnClickListe
         bookCab.setOnClickListener(this);
         Logout = findViewById(R.id.Logout);
         username = findViewById(R.id.USERNAme);
+
         Logout.setOnClickListener(this);
         databaseReference = FirebaseDatabase.getInstance().getReference();
 

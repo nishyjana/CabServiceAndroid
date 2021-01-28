@@ -4,54 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".adminHomePage">
-
-
+    tools:context=".DriverHome">
     <Button
-        android:id="@+id/DriverDet"
-        android:layout_width="288dp"
-        android:layout_height="62dp"
-        android:text="View Driver Details"
+        android:id="@+id/driverdet"
+        android:layout_width="188dp"
+        android:layout_height="wrap_content"
+        android:text="Create log book"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.456" />
-    <TextView
-        android:id="@+id/USERNAme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.267" />
     <Button
-        android:id="@+id/LogBook"
-        android:layout_width="288dp"
-        android:layout_height="62dp"
-        android:text="View Logbook Details"
+        android:id="@+id/books"
+        android:layout_width="188dp"
+        android:layout_height="wrap_content"
+        android:text="View Bookings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.596" />
-
+        app:layout_constraintVertical_bias="0.56" />
     <Button
-        android:id="@+id/Logout"
+        android:id="@+id/lg"
+        android:layout_width="188dp"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.656" />
+
+    <Switch
+        android:id="@+id/statusdriver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LogOut"
+        android:text="Active"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintHorizontal_bias="0.594"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.756" />
+        app:layout_constraintVertical_bias="0.752" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

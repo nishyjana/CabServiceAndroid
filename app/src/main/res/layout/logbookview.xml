@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+    <TextView
+        android:id="@+id/bookingname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="TextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/driverid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:hint="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/bookinglocation"
+
+       />
+
+    <TextView
+        android:id="@+id/bookingnumber"
+        android:layout_width="111dp"
+        android:layout_height="25dp"
+        android:hint="TextViedw"
+        app:layout_constraintEnd_toEndOf="@+id/bookinglocation"
+
+        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="37dp" />
+
+    <TextView
+        android:id="@+id/bookinglocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+
+
+        android:hint="TextView"
+
+
+        />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
