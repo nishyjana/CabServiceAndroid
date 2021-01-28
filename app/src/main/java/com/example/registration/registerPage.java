@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,9 +26,11 @@ public class registerPage extends AppCompatActivity implements View.OnClickListe
     private ProgressBar progressBar2;
      FirebaseAuth mAuth;
      FirebaseFirestore fstore;
+     private Switch Driver,Customer;
 
 
-    private Button registeringUserButton,registerDriverButton;
+
+    private Button registeringButton,registerDriverButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +48,30 @@ public class registerPage extends AppCompatActivity implements View.OnClickListe
         editTextPassword= findViewById(R.id.editTextPassword);
 
         progressBar2 = findViewById(R.id.ProgressBar);
-        registerDriverButton = findViewById(R.id.SignUp3);
-        registerDriverButton.setOnClickListener(this);//add listener
+        //registerDriverButton = findViewById(R.id.SignUp3);
+       // registerDriverButton.setOnClickListener(this);//add listener
+        Customer = findViewById(R.id.customer);
+        Customer.setOnClickListener(this) ;
+        Driver = findViewById(R.id.driver);
+        Driver.setOnClickListener(this) ;
 
-        registeringUserButton = findViewById(R.id.SignUp2);
-        registeringUserButton.setOnClickListener(this);//add listener
+
     }
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.SignUp2:
-                registerUser();
-                break;
-            case R.id.SignUp3:
-                registerDrivers();
+            case R.id.driver:
+               if (Driver.isChecked()){
+                   registerDrivers();
+               }
+
+
+
+            case R.id.customer:
+                if (Customer.isChecked()){
+                    registerUser();
+                }
+
                 break;
 
         }
@@ -115,7 +128,9 @@ public class registerPage extends AppCompatActivity implements View.OnClickListe
                 FirebaseUser user = mAuth.getCurrentUser();
                 Toast.makeText(registerPage.this,"Account Created",Toast.LENGTH_SHORT).show();
                 DocumentReference df = fstore.collection("Users").document(user.getUid());
-                User userDet = new User(emailAddress,fullName,contact,password,address,false,true,false);
+
+                User userDet = new User(fullName,emailAddress,contact,password,address,false,true,false,"pending");
+
                 df.set(userDet).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -192,7 +207,7 @@ public class registerPage extends AppCompatActivity implements View.OnClickListe
                 FirebaseUser user = mAuth.getCurrentUser();
                 Toast.makeText(registerPage.this,"Account Created",Toast.LENGTH_SHORT).show();
                 DocumentReference df = fstore.collection("Users").document(user.getUid());
-                User userDet = new User(emailAddress,fullName,contact,password,address,false,false,true);
+                User userDet = new User(fullName,emailAddress,contact,password,address,false,false,true,"pending");
                 df.set(userDet).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -213,7 +228,7 @@ public class registerPage extends AppCompatActivity implements View.OnClickListe
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(registerPage.this,"Account Creation Failure ",Toast.LENGTH_LONG).show();
+                Toast.makeText(registerPage.this,""+e,Toast.LENGTH_LONG).show();
 
             }
         });

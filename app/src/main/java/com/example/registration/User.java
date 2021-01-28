@@ -9,13 +9,14 @@ public class User {
     private Boolean isadmin;
     private Boolean isDriver;
     private Boolean isUser;
+    private String status;
 
 
     public User() {
     }
 
 
-    public User(String name, String email, String contact, String password, String address, Boolean isadmin, Boolean isDriver, Boolean isUser) {
+    public User(String name, String email, String contact, String password, String address, Boolean isadmin, Boolean isDriver, Boolean isUser,String status) {
         this.name = name;
         this.email = email;
         this.contact = contact;
@@ -24,6 +25,7 @@ public class User {
         this.isadmin = isadmin;
         this.isDriver = isDriver;
         this.isUser = isUser;
+        this.status =status;
     }
 
     public String getEmail() {
@@ -87,5 +89,13 @@ public class User {
 
     public void setUser(Boolean user) {
         isUser = user;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

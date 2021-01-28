@@ -103,26 +103,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void checkDriver(String uid) {
-        DocumentReference df = fstore.collection("Users").document(uid);
-        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Log.d("TAG","OnSucess"+documentSnapshot.getData());
-                if(documentSnapshot.getBoolean("driver") == true){
-                   // startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    Toast.makeText(MainActivity.this,"Hi driver",Toast.LENGTH_LONG).show();
+        try {
+            DocumentReference df = fstore.collection("Users").document(uid);
+            df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Log.d("TAG","OnSucess"+documentSnapshot.getData());
+                    if(documentSnapshot.getBoolean("driver") == true){
+                        // startActivity(new Intent(getApplicationContext(),MainActivity.class));
+//                    startActivity(new Intent(getApplicationContext(),DetailsVIewDriver.class));
+                        Toast.makeText(MainActivity.this,"sucess",Toast.LENGTH_SHORT).show();
 
+
+                    }
+                    else if(documentSnapshot.getBoolean("user") == true){
+                        startActivity(new Intent(getApplicationContext(),userHomePage.class));
+
+
+                    }
+                    else if (documentSnapshot.getBoolean("isadmin") == true){
+                        startActivity(new Intent(getApplicationContext(),adminHomePage.class));
+
+                    }
                 }
-                else if(documentSnapshot.getBoolean("user") == true){
-                    startActivity(new Intent(getApplicationContext(),userHomePage.class));
+            });
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this,"Failure"+e,Toast.LENGTH_LONG).show();
+        }
 
 
-                }
-                else if (documentSnapshot.getBoolean("isadmin") == true){
-                    startActivity(new Intent(getApplicationContext(),adminHomePage.class));
 
-                }
-            }
-        });
     }
 }
