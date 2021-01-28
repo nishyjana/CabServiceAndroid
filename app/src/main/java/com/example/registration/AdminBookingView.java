@@ -145,7 +145,7 @@ public class AdminBookingView extends AppCompatActivity {
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            String subject = document.getString("name");
+                            String subject = document.getString("email");
                             subjects.add(subject);
                         }
                         adapter.notifyDataSetChanged();

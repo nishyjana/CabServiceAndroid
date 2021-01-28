@@ -33,11 +33,11 @@ public class DriverBookingView extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         recyclerViewFireStore = findViewById(R.id.bookingview);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String email = user.getDisplayName();
+        String email = user.getEmail();
         Toast.makeText(DriverBookingView.this, "sucess"+email , Toast.LENGTH_SHORT).show();
 
         CollectionReference ref = firebaseFirestore.collection("Bookings");
-        Query querys = ref.whereEqualTo("driver","pending");
+        Query querys = ref.whereEqualTo("driver",email);
 
         FirestoreRecyclerOptions<cabBook> bookinglistoptions = new FirestoreRecyclerOptions.Builder<cabBook>()
                 .setQuery(querys,cabBook.class)
