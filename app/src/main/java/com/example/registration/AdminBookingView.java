@@ -47,9 +47,12 @@ public class AdminBookingView extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         recyclerViewFireStore = findViewById(R.id.RecycleDriverDet);
 
-        Query query = firebaseFirestore.collection("Bookings");
+       // Query query = firebaseFirestore.collection("Bookings");
+        CollectionReference ref = firebaseFirestore.collection("Bookings");
+        Query querys = ref.whereEqualTo("driver","pending");
+
         FirestoreRecyclerOptions<cabBook> bookinglistoptions = new FirestoreRecyclerOptions.Builder<cabBook>()
-                .setQuery(query,cabBook.class)
+                .setQuery(querys,cabBook.class)
                 .build();
         adapter = new FirestoreRecyclerAdapter<cabBook, AdminBookingView.bookingViewholder>(bookinglistoptions) {
             @NonNull
