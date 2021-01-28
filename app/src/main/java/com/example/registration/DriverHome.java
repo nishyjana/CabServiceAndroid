@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class DriverHome extends AppCompatActivity {
-    private Button driverDet, LogoutBtn;
+    private Button driverDet, LogoutBtn, ViewBook;
     private DatabaseReference databaseReference;
     FirebaseAuth mAuth;
 
@@ -24,7 +24,8 @@ public class DriverHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_home);
         driverDet = findViewById(R.id.driverdet);
-        LogoutBtn = findViewById(R.id.lgout);
+        LogoutBtn = findViewById(R.id.lg);
+        ViewBook = findViewById(R.id.books);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -42,13 +43,19 @@ public class DriverHome extends AppCompatActivity {
 
 
         }
+        ViewBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DriverHome.this,DriverBookingView.class));
+            }
+        });
         driverDet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                   // startActivity(new Intent(DriverHome.this,makeCabOrder.class));
+                   startActivity(new Intent(DriverHome.this,DriverDetails.class));
 
                     String email = user.getEmail();
 
