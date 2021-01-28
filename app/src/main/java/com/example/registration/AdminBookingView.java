@@ -98,13 +98,8 @@ public class AdminBookingView extends AppCompatActivity {
                                     }
                                 });
 
-
-
                     }
                 });
-
-
-                //Toast.makeText(AdminBookingList.this, "This is" +model.getName(), Toast.LENGTH_SHORT).show();
 
             }
         };

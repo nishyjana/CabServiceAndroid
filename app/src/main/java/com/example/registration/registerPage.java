@@ -129,7 +129,7 @@ public class registerPage extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(registerPage.this,"Account Created",Toast.LENGTH_SHORT).show();
                 DocumentReference df = fstore.collection("Users").document(user.getUid());
 
-                User userDet = new User(fullName,emailAddress,contact,password,address,false,true,false,"pending");
+                User userDet = new User(fullName,emailAddress,contact,password,address,false,true,false,"Active");
 
                 df.set(userDet).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
