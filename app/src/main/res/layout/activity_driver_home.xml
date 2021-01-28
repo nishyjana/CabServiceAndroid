@@ -9,7 +9,7 @@
         android:id="@+id/driverdet"
         android:layout_width="188dp"
         android:layout_height="wrap_content"
-        android:text="View Driver Details"
+        android:text="Create log book"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"

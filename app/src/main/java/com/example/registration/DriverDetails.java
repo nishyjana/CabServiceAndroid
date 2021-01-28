@@ -58,10 +58,10 @@ public class DriverDetails extends AppCompatActivity  implements View.OnClickLis
             DocumentReference newtoRef = db.collection("Logbook").document();
             String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
             Logbook book = new Logbook();
-            book.setCustomerEmail(emails);
+            book.setCustomerEmail(custEmail);
             book.setLocation(locat);
             book.setAmount(amt);
-            book.setDriverID(userID);
+            book.setDriverID(emails);
 
             newtoRef.set(book).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
