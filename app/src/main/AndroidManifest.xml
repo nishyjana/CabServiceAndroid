@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminBookingView"></activity>
+        <activity android:name=".DriverHome"></activity>
+        <activity android:name=".AdminBookingView" />
         <activity android:name=".AdminBookingList" />
         <activity android:name=".DetailsVIewDriver" />
         <activity android:name=".DriverDetails" />

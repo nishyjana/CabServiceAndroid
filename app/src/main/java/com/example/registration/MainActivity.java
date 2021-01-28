@@ -111,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d("TAG","OnSucess"+documentSnapshot.getData());
                     if(documentSnapshot.getBoolean("driver") == true){
                         // startActivity(new Intent(getApplicationContext(),MainActivity.class));
-//                    startActivity(new Intent(getApplicationContext(),DetailsVIewDriver.class));
-                        Toast.makeText(MainActivity.this,"sucess",Toast.LENGTH_SHORT).show();
+                         startActivity(new Intent(getApplicationContext(),DriverHome.class));
+                      //  Toast.makeText(MainActivity.this,"sucess",Toast.LENGTH_SHORT).show();
 
 
                     }
