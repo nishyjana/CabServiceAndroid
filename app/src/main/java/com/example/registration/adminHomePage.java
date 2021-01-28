@@ -11,11 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class adminHomePage extends AppCompatActivity implements View.OnClickListener {
 
     private TextView ProfileName;
     private Button logout, DriverDetaisl;
+    FirebaseFirestore fstore;
+    FirebaseAuth fauth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,22 +30,25 @@ public class adminHomePage extends AppCompatActivity implements View.OnClickList
         DriverDetaisl = findViewById(R.id.DriverDet);
         logout.setOnClickListener(this);
         DriverDetaisl.setOnClickListener(this);
+        fauth = FirebaseAuth.getInstance();
+        fstore= FirebaseFirestore.getInstance();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
+       try {
+           if (user != null) {
+               Toast.makeText(adminHomePage.this,"Logged in as admin ",Toast.LENGTH_SHORT).show();
+           }
 
+           else{
+               Toast.makeText(adminHomePage.this,"Login Fail ",Toast.LENGTH_SHORT).show();
+           }
+       }
+       catch ( Exception e){
 
-             Toast.makeText(adminHomePage.this,"Logged in as admin ",Toast.LENGTH_SHORT).show();
-
-
-
-
-
+           Toast.makeText(adminHomePage.this,"Login Fail "+e,Toast.LENGTH_SHORT).show();
+       }
         }
 
-
-
-    }
 
     @Override
     public void onClick(View v) {
@@ -52,17 +58,15 @@ public class adminHomePage extends AppCompatActivity implements View.OnClickList
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if (user != null) {
                         // User is signed in
+                        startActivity(new Intent(this, AdminBookingView.class));
 
-
-                        String email = user.getEmail();
-
-                        Toast.makeText(adminHomePage.this, "HI " + email, Toast.LENGTH_SHORT).show();
                     } else {
                         // No user is signed in
                         Toast.makeText(adminHomePage.this, "Authentication fata error. Login again", Toast.LENGTH_SHORT).show();
                     }
 
                     break;
+
                 case R.id.Logout:
                     FirebaseAuth.getInstance().signOut();
 
@@ -79,5 +83,6 @@ public class adminHomePage extends AppCompatActivity implements View.OnClickList
 
         }
     }
+
 
 }

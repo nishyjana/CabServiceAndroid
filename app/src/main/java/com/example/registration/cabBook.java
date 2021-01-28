@@ -14,6 +14,11 @@ public class cabBook {
 
     }
 
+    public cabBook(String name, String pickup) {
+        this.name = name;
+        this.pickup = pickup;
+    }
+
     public cabBook() {
     }
 
